@@ -1287,7 +1287,38 @@ def alexa_watch_random_movie(slots):
   else:
     return build_alexa_response('Error parsing results', card_title)
 
+    
+# Handle the WatchPVR intent.
+def alexa_watch_pvr(slots):
+  if 'Channel' in slots:
+    channels = kodi.GetPVRtv()
+    heard_pvr = str(slots['Channel']['value']).lower().translate(None, string.punctuation)
+  elif 'Network' in slots:
+    channels = kodi.GetPVRtv()
+    heard_pvr = str(slots['Network']['value']).lower().translate(None, string.punctuation)
+  elif 'Station' in slots: 
+    channels = kodi.GetPVRradio()
+    heard_pvr = str(slots['Station']['value']).lower().translate(None, string.punctuation)
+  
+  card_title = 'Playing Channel %s' % (heard_pvr)
+  print card_title
+  sys.stdout.flush()
 
+  if 'result' in channels and 'channels' in channels['result']:
+    pvr_array = channels['result']['channels']
+
+    located = kodi.matchHeard(heard_pvr, pvr_array)
+
+    if located:
+      kodi.PlayChannel(located['channelid'])
+
+      return build_alexa_response('%s %s' % (action, heard_pvr), card_title)
+    else:
+      return build_alexa_response('Could not find a movie called %s' % (heard_pvr), card_title)
+  else:
+    return build_alexa_response('Error parsing results', card_title)
+
+    
 # Handle the WatchMovie intent.
 def alexa_watch_movie(slots):
   heard_movie = str(slots['Movie']['value']).lower().translate(None, string.punctuation)
@@ -1745,6 +1776,7 @@ INTENTS = [
   ['WatchRandomMovie', alexa_watch_random_movie],
   ['WatchRandomEpisode', alexa_watch_random_episode],
   ['WatchMovie', alexa_watch_movie],
+  ['WatchPVR', alexa_watch_pvr],
   ['WatchEpisode', alexa_watch_episode],
   ['WatchNextEpisode', alexa_watch_next_episode],
   ['WatchLatestEpisode', alexa_watch_newest_episode],

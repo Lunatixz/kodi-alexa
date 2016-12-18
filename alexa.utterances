@@ -637,7 +637,7 @@ WatchNextEpisode play next episode of {Show}
 WatchNextEpisode watch next episode of {Show}
 WatchPVR watch channel {Channel}
 WatchPVR watch network {Network}
-WatchPVR listen to station {Radio}
+WatchPVR listen to station {Station}
 WatchRandomEpisode play episode of {Show}
 WatchRandomEpisode play random episode of {Show}
 WatchRandomEpisode watch episode of {Show}

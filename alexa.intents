@@ -206,10 +206,10 @@
         },
         {
           "name": "Network",
-          "type": "PVRNETWORK"
+          "type": "PVRTV"
         },
         {
-          "name": "Radio",
+          "name": "Station",
           "type": "PVRRADIO"
         }
       ]

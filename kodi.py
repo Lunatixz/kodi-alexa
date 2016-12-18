@@ -333,7 +333,7 @@ def StartVideoPlaylist(playlist_file=None, shuffle=False):
     return SendCommand(RPCString("Player.Open", {"item": {"playlistid": 1}, "options": {"shuffled": shuffle}}))
 
     
-def PlayChannel(ch_id, resume=True):
+def PlayChannel(ch_id):
   return SendCommand(RPCString("Player.Open", {"item": {"channelid": ch_id}}))
   
   
