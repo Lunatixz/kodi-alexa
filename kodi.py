@@ -332,7 +332,11 @@ def StartVideoPlaylist(playlist_file=None, shuffle=False):
   else:
     return SendCommand(RPCString("Player.Open", {"item": {"playlistid": 1}, "options": {"shuffled": shuffle}}))
 
-
+    
+def PlayChannel(ch_id, resume=True):
+  return SendCommand(RPCString("Player.Open", {"item": {"channelid": ch_id}}))
+  
+  
 def PlayEpisode(ep_id, resume=True):
   return SendCommand(RPCString("Player.Open", {"item": {"episodeid": ep_id}, "options": {"resume": resume}}))
 
@@ -688,6 +692,14 @@ def GetArtistAlbums(artist_id):
 
 def GetAlbums():
   return SendCommand(RPCString("AudioLibrary.GetAlbums"))
+
+  
+def GetPVRtv():
+  return SendCommand(RPCString("PVR.GetChannels", {"params": {"channelgroupid": "alltv"}}))
+  
+  
+def GetPVRradio():
+  return SendCommand(RPCString("PVR.GetChannels", {"params": {"channelgroupid": "allradio"}}))
 
 
 def GetArtistSongs(artist_id):

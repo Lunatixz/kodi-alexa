@@ -615,6 +615,9 @@ VolumeUp turn up volume
 VolumeUp turn volume up
 VolumeUp up volume
 VolumeUp volume up
+WatchPVR watch channel {Channel}
+WatchPVR watch network {Network}
+WatchPVR listen to station {Radio}
 WatchEpisode play season {Season} episode {Episode} of {Show}
 WatchEpisode play series {Season} episode {Episode} of {Show}
 WatchEpisode watch season {Season} episode {Episode} of {Show}

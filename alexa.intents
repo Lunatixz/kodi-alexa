@@ -198,6 +198,23 @@
       "slots": []
     },
     {
+      "intent": "WatchPVR",
+      "slots": [
+        {
+          "name": "Channel",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Network",
+          "type": "PVRNETWORK"
+        },
+        {
+          "name": "Radio",
+          "type": "PVRRADIO"
+        }
+      ]
+    },
+    {
       "intent": "WatchMovie",
       "slots": [
         {
