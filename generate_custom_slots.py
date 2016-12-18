@@ -64,6 +64,25 @@ for a in deduped:
 gfile.close()
 
 
+# Generate PVRCHANNEL Slot
+retrieved = kodi.GetPVRtv()
+
+all = []
+
+if 'result' in retrieved and 'channels' in retrieved['result']:
+  for v in retrieved['result']['channels']:
+    ascii_name = v['channelid'].encode('ascii', 'replace')
+    removed_paren = re.sub(r'\([^)]*\)', '', ascii_name).rstrip().lower().translate(None, string.punctuation)
+    all.append(removed_paren.encode('utf-8').strip())
+
+deduped = list(set(all))
+
+gfile = open('PVRCHANNEL', 'w')
+for a in deduped:
+  gfile.write("%s\n" % a)
+gfile.close()
+
+
 # # Generate PVRRADIO Slot
 # retrieved = kodi.GetPVRradio()
 
